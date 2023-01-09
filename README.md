@@ -6,7 +6,7 @@ Download.
 
 npm i node
 
-npm i Bootstrap
+npm i bootstrap
 
 npm start
 
