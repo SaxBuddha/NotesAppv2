@@ -13,14 +13,25 @@
   <div class="container">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/">Notes by Ben by BenTech&#169</a>
+      <a class="navbar-brand" href="/">A very cool notes app</a>
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <a class="nav-link" href="/notes">Notes</a>
-          </li>
+          <a class="nav-link" href="/notes">Notes</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="/about">About</a>
-        </li>
+        </li>        
+        <form action="/notes/search" method="GET">
+          <input
+            type="text"
+            name="search"
+            id="search"
+            placeholder="Search for Notes"
+            class="search"
+          />
+          <button class="search-btn" type="submit">Submit</button>
+      <div class="imae"></div>
+    </form>
 
       </ul>
     </nav>

@@ -1,0 +1,31 @@
+<%- include("header") -%>
+
+<h1>Search Results (<%= model.length %>)</h1>
+
+<div class="table-responsive-sm">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Note ID</th>
+        <th>Note</th>
+        <th class="d-print-none">
+          <a class="btn btn-sm btn-success" href="/create">Add</a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (const note of model) { %>
+        <tr>
+          <td><%= note.Note_ID %></td>
+          <td><%= note.Note %></td>
+          <td class="d-print-none">
+            <a class="btn btn-sm btn-warning" href="/edit/<%= note.Note_ID %>">Edit</a>
+            <a class="btn btn-sm btn-danger" href="/delete/<%= note.Note_ID %>">Delete</a>
+          </td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+
+<%- include("footer") -%>
