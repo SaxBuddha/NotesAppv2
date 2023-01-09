@@ -79,8 +79,7 @@ app.get("/notes", (req, res) => {
 app.get("/edit/:id", (req, res) => {
     const id = req.params.id;
     const sql = "SELECT * FROM Notes WHERE Note_ID = ?";
-    db.get(sql, id, (err, row) => {
-        // if (err) ...
+    db.get(sql, id, (err, row) => {        
         res.render("edit", { model: row });
     });
 });
@@ -90,8 +89,7 @@ app.post("/edit/:id", (req, res) => {
     const id = req.params.id;
     const note = [req.body.Note_ID, req.body.Note, id];
     const sql = "UPDATE Notes SET Note_ID = ?, Note = ? WHERE (Note_ID = ?)";
-    db.run(sql, note, err => {
-        // if (err) ...
+    db.run(sql, note, err => {        
         res.redirect("/notes");
     });
 });
@@ -117,8 +115,7 @@ app.post("/create", (req, res) => {
 app.get("/delete/:id", (req, res) => {
     const id = req.params.id;
     const sql = "SELECT * FROM Notes WHERE Note_ID = ?";
-    db.get(sql, id, (err, row) => {
-        // if (err) 
+    db.get(sql, id, (err, row) => {       
         res.render("delete", { model: row });
     });
 });
@@ -127,33 +124,16 @@ app.get("/delete/:id", (req, res) => {
 app.post("/delete/:id", (req, res) => {
     const id = req.params.id;
     const sql = "DELETE FROM Notes WHERE Note_ID = ?";
-    db.run(sql, id, err => {
-        // if (err)
+    db.run(sql, id, err => {       
         res.redirect("/notes");
     });
 });
 
 // Search and return notes
-// app.get("/notes/search/", (req, res) => {
-//     const searchTerm = req.query.search;
-
-//     //const category = req.query.category;
-
-//         let query = 'SELECT * FROM Posting';
-
-//         query = `SELECT * FROM Posting WHERE Name LIKE '%` + searchTerm
-        
-//         db.query(query) => {
-
-
-    
-    
-    
-    // const sql = "SELECT * FROM Notes ORDER BY Note_ID"
-    // db.all(sql, [], (err, rows) => {
-    //     if (err) {
-    //         return console.error(err.message);
-    //     }
-    //     res.render("notes", { model: rows });
-    // });
-// });
+app.get("/search/:query", (req, res) => {
+    const query = req.params.query;
+    const sql = "SELECT * FROM Notes WHERE Note CONTAINS ?";
+    db.get(sql, query, (err, row) => {        
+        res.render("result", { model: row });
+    });
+});
