@@ -3,7 +3,9 @@
 To run:
 
 Download.
+
 npm i node
+
 npm i Bootstrap
 
 npm start
